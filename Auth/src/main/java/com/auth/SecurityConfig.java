@@ -23,11 +23,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -51,18 +46,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
-        http.formLogin().loginPage("/authentication/require")
-                .loginProcessingUrl("/authentication/form")
+        http.formLogin()
+                .and().authorizeRequests()
+                .antMatchers("/authentication/require",
+                        "/authentication/form",
+                        "/login",
+                        "/**/*.js",
+                        "/**/*.css",
+                        "/**/*.jpg",
+                        "/**/*.png",
+                        "/**/*.woff2"
+                )
+                .permitAll()
+                .anyRequest().authenticated()
                 .and()
-                .authorizeRequests()
-                .antMatchers("/login").permitAll()
-                .anyRequest().hasAnyRole("USER","CLIENT")
-                .and()
-                // TODO: put CSRF protection back into this endpoint
-                .csrf()
-                .requireCsrfProtectionMatcher(new AntPathRequestMatcher("/oauth/authorize"))
-                .disable()
-                .formLogin();
+                .csrf().disable();
         // @formatter:on
     }
 }
