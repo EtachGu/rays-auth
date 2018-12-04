@@ -63,11 +63,11 @@ public class AuthConfig {
                     .autoApprove(true)
                     .and()
                     .withClient("client2")
-                    .authorizedGrantTypes("authorization_code", "implicit")
+                    .authorizedGrantTypes("authorization_code", "refresh_token", "password")
                     .authorities("ROLE_CLIENT")
                     .scopes("read", "write")
-                    .secret("{bcrypt}$2a$10$CyHioIZ2mp5cirwpI5K5l.fPSRv9HXU340A2/KrVVVZmk7S5EAr.q")
-                    .redirectUris("http://localhost:8082","http://127.0.0.1:8082");
+                    .secret(passwordEncoder.encode("123456"))
+                    .redirectUris("http://localhost:8082/client2/login","http://127.0.0.1:8082/client2/login");
             // @formatter:on
         }
 
