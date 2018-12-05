@@ -18,7 +18,25 @@ security:
       clientSecret: 123456
       accessTokenUri: http://127.0.0.1:8080/oauth/token
       userAuthorizationUri: http://127.0.0.1:8080/oauth/authorize
-      clientAuthenticationScheme: form
+#      clientAuthenticationScheme: form
     resource:
       userInfoUri: http://127.0.0.1:8080/user/me
       tokenInfoUri: http://127.0.0.1:8080/oauth/check_token
+
+
+#server:
+#  servlet:
+#    context-path: /client2
+#  port: 8082
+#
+#security:
+#  oauth2:
+#    client:
+#      clientId: client_1
+#      clientSecret: 123456
+#      accessTokenUri: http://127.0.0.1:8081/oauth/token
+#      userAuthorizationUri: http://127.0.0.1:8081/oauth/authorize
+#      clientAuthenticationScheme: form
+#    resource:
+##      userInfoUri: http://127.0.0.1:8080/user/me
+#      tokenInfoUri: http://127.0.0.1:8081/oauth/check_token

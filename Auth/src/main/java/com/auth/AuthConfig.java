@@ -59,7 +59,7 @@ public class AuthConfig {
                     .authorities("ROLE_CLIENT")
                     .scopes("read", "write")
                     .secret(passwordEncoder.encode("123456"))
-                    .redirectUris("http://localhost:8081","http://127.0.0.1:8081","http://127.0.0.1:8081/client1/login")
+                    .redirectUris("http://localhost:8081/client1/login","http://127.0.0.1:8081","http://127.0.0.1:8081/client1/login")
                     .autoApprove(true)
                     .and()
                     .withClient("client2")
@@ -67,6 +67,7 @@ public class AuthConfig {
                     .authorities("ROLE_CLIENT")
                     .scopes("read", "write")
                     .secret(passwordEncoder.encode("123456"))
+                    .autoApprove(true)
                     .redirectUris("http://localhost:8082/client2/login","http://127.0.0.1:8082/client2/login");
             // @formatter:on
         }
