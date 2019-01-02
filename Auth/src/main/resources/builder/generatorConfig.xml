@@ -9,15 +9,15 @@
     <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
-        <property name="mergeable" value="false"></property>
+        <property name="mergeable" value="false"/>
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
             <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
         </plugin>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/rays_auth?useUnicode=true&amp;characterEncoding=UTF8"
+                        connectionURL="jdbc:mysql://localhost:3306/evan_sso?useUnicode=true&amp;characterEncoding=UTF8"
                         userId="root"
-                        password="123456">
+                        password="cim201">
         </jdbcConnection>
 
         <javaModelGenerator targetPackage="${targetModelPackage}" targetProject="${targetJavaProject}"/>
@@ -27,24 +27,24 @@
         <javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}"
                              type="XMLMAPPER"/>
 
-        <!--<table tableName="base_user" domainObjectName="User" >-->
-        <!--<generatedKey column="id" identity="false" sqlStatement="myql"/>-->
-        <!--</table>-->
-        <!--<table tableName="base_menu" domainObjectName="Menu" >-->
-        <!--<generatedKey column="id" identity="false" sqlStatement="myql"/>-->
-        <!--</table>-->
-        <!--<table tableName="base_group" domainObjectName="Group" >
-            &lt;!&ndash;<generatedKey column="id" identity="true"/>&ndash;&gt;
-        </table>
-        <table tableName="base_group_type" domainObjectName="GroupType" >
-        </table>-->
-        <!--<table tableName="base_resource_authority" domainObjectName="ResourceAuthority" >
-        </table>-->
-        <!--<table tableName="base_element" domainObjectName="Element">-->
-        <!--</table>-->
-        <!--<table tableName="gate_client" domainObjectName="GateClient">-->
-        <!--</table>-->
-        <table tableName="gate_client_service" domainObjectName="ClientService">
-        </table>
+
+        <!--<table tableName="clientdetails" domainObjectName="ClientDetails"></table>-->
+        <!--<table tableName="oauth_access_token" domainObjectName="OauthAccessToken"></table>-->
+        <!--<table tableName="oauth_approvals" domainObjectName="OauthApprovals"></table>-->
+        <!--<table tableName="oauth_client_details" domainObjectName="OauthClientDetails"></table>-->
+        <!--<table tableName="oauth_client_token" domainObjectName="OauthClientToken"></table>-->
+        <!--<table tableName="oauth_code" domainObjectName="OauthCode"></table>-->
+        <!--<table tableName="oauth_refresh_token" domainObjectName="OauthRefreshToken"></table>-->
+        <!--<table tableName="permission" domainObjectName="Permission"></table>-->
+        <!--<table tableName="role" domainObjectName="Role"></table>-->
+        <!--<table tableName="roles_permissions" domainObjectName="RolesPermissions"></table>-->
+        <!--<table tableName="userinfo" domainObjectName="Userinfo"></table>-->
+        <!--<table tableName="userinfos_roles" domainObjectName="UserinfosRoles"></table>-->
+        <table tableName="oauth_access_token" domainObjectName="OAuthAccessToken"></table>
+        <table tableName="oauth_approvals" domainObjectName="OAuthApprovals"></table>
+        <table tableName="oauth_client_details" domainObjectName="OAuthClientDetails"></table>
+        <table tableName="oauth_client_token" domainObjectName="OAuthClientToken"></table>
+        <table tableName="oauth_code" domainObjectName="OAuthCode"></table>
+        <table tableName="oauth_refresh_token" domainObjectName="OAuthRefreshToken"></table>
     </context>
 </generatorConfiguration>
