@@ -1,8 +1,13 @@
 auth-server: http://localhost:8080/authserver
+
 server:
   port: 8083
   servlet:
     context-path: /resource
+    session:
+      cookie:
+        name: RESOURCESESSION
+
 security:
   oauth2:
     client:
