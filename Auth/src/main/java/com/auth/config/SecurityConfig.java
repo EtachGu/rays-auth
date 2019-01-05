@@ -20,7 +20,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
  */
 
 @Configuration
-@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -59,6 +58,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 )
                 .permitAll()
                 .anyRequest().authenticated()
+                .and()
+                .logout()
+//                .permitAll()
+//                .logoutSuccessHandler(
+//                        (request, response, authentication) -> {
+//                            String callback = request.getParameter("callback");
+//                            if (callback == null){
+//                                callback = "/login?logout";
+//                            }
+//                            response.sendRedirect(callback);
+//                        }
+//                )
                 .and()
                 .csrf().disable();
         // @formatter:on

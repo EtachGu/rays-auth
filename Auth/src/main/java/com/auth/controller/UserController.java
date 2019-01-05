@@ -26,7 +26,7 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping("me")
-    public Principal getPhotoServiceUser(Principal principal) {
+    public Principal getServiceUser(Principal principal) {
         System.out.println(principal);
         return principal;
     }
