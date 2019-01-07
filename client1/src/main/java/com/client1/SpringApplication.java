@@ -14,14 +14,13 @@ import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResour
  * @version：1.0
  */
 @SpringBootApplication
-@EnableOAuth2Sso
 public class SpringApplication {
     public static void main(String[] args) {
         org.springframework.boot.SpringApplication.run(SpringApplication.class, args);
     }
 
-//    @Bean
-//    OAuth2RestTemplate oAuth2RestTemplate(OAuth2ClientContext oAuth2ClientContext, OAuth2ProtectedResourceDetails details){
-//        return new OAuth2RestTemplate(details,oAuth2ClientContext);
-//    }
+    @Bean
+    OAuth2RestTemplate oAuth2RestTemplate(OAuth2ClientContext clientContext, OAuth2ProtectedResourceDetails details){
+        return new OAuth2RestTemplate(details, clientContext);
+    }
 }
