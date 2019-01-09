@@ -107,8 +107,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         //oauthServer.realm("sparklr2/client");
 //            oauthServer.checkTokenAccess()
-        security.tokenKeyAccess("permitAll()");
-        security.checkTokenAccess("isAnonymous() || isAuthenticated()");
+        security.tokenKeyAccess("isAnonymous() || hasAuthority('ROLE_CLIENT')");
+        security.checkTokenAccess("hasAuthority('ROLE_CLIENT')");
     }
 
 }
