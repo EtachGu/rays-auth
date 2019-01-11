@@ -71,6 +71,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .exceptionHandling()
 //                .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/"))
                 .and()
+                .cors()
+                .and()
                 .csrf().disable();
         // @formatter:on
     }
