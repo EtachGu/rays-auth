@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -78,7 +79,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         // @formatter:off
         clients.inMemory()
                 .withClient("client1")
-                .authorizedGrantTypes("authorization_code", "refresh_token", "password")
+                .authorizedGrantTypes("authorization_code", "refresh_token", "password","client_credentials")
                 .authorities("ROLE_CLIENT")
                 .scopes("read", "write")
                 .secret(passwordEncoder.encode("123456"))
@@ -98,7 +99,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.tokenStore(tokenStore())//.userApprovalHandler(userApprovalHandler)
+        endpoints
+//                .allowedTokenEndpointRequestMethods(HttpMethod.GET,HttpMethod.POST) // 允许通过Get和POST请求 获取Token
+                .tokenStore(tokenStore())//.userApprovalHandler(userApprovalHandler)
                 .approvalStore(approvalStore())
                 .authenticationManager(authenticationManager);
     }
@@ -109,6 +112,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 //            oauthServer.checkTokenAccess()
         security.tokenKeyAccess("isAnonymous() || hasAuthority('ROLE_CLIENT')");
         security.checkTokenAccess("hasAuthority('ROLE_CLIENT')");
+//        security.allowFormAuthenticationForClients(); // 允许
     }
 
 }
