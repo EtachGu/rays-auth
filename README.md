@@ -4,10 +4,10 @@
 
 
 
-# 总体架构图
+## 总体架构图
 
 
-# API
+## API
 
 接口名称 | HTTP方法 | 说明 
 -------- | -------- | -------- 
@@ -16,7 +16,7 @@
 /oauth/check_token | |校验Token  (used by Resource Servers to decode access tokens)
 /oauth/token_key | |获取 JWT token
 
-# 页面
+## 页面
 
 路由 | HTTP方法 | 说明 
 -------- | -------- | -------- 
@@ -25,6 +25,6 @@
 
 
 
-# 参考
+## 参考
 
 [1] http://projects.spring.io/spring-security-oauth/docs/oauth2.html 
