@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.auth.mapper.OAuthApprovalsMapper" >
+  <resultMap id="BaseResultMap" type="com.auth.entity.OAuthApprovals" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="userId" property="userid" jdbcType="VARCHAR" />
+    <result column="clientId" property="clientid" jdbcType="VARCHAR" />
+    <result column="scope" property="scope" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="expiresAt" property="expiresat" jdbcType="TIMESTAMP" />
+    <result column="lastModifiedAt" property="lastmodifiedat" jdbcType="TIMESTAMP" />
+  </resultMap>
+</mapper>
