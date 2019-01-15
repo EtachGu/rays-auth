@@ -1,0 +1,56 @@
+INSERT INTO `oauth_client_details` (
+	`client_id`,
+	`resource_ids`,
+	`client_secret`,
+	`scope`,
+	`authorized_grant_types`,
+	`web_server_redirect_uri`,
+	`authorities`,
+	`access_token_validity`,
+	`refresh_token_validity`,
+	`additional_information`,
+	`autoapprove`
+)
+VALUES
+	(
+		'client1',
+		NULL,
+		'$2a$10$Njt3irl.c6kCKOQUPch/OOPQqI/wX/jK2cc025SDTJVMZryIreCnC',
+		'read,write',
+		'password,authorization_code,refresh_token,client_credentials',
+		'http://localhost:8081/client1/login,http://127.0.0.1:8081",http://127.0.0.1:8081/client1/login',
+		'ROLE_CLIENT',
+		'36000',
+		'36000',
+		NULL,
+		'0'
+	);
+
+INSERT INTO `oauth_client_details` (
+	`client_id`,
+	`resource_ids`,
+	`client_secret`,
+	`scope`,
+	`authorized_grant_types`,
+	`web_server_redirect_uri`,
+	`authorities`,
+	`access_token_validity`,
+	`refresh_token_validity`,
+	`additional_information`,
+	`autoapprove`
+)
+VALUES
+	(
+		'client2',
+		NULL,
+		'$2a$10$Njt3irl.c6kCKOQUPch/OOPQqI/wX/jK2cc025SDTJVMZryIreCnC',
+		'read,write',
+		'password,authorization_code,refresh_token',
+		'http://localhost:8082/client2/login,http://127.0.0.1:8082/client2/login',
+		'ROLE_CLIENT',
+		'36000',
+		'36000',
+		NULL,
+		'0'
+	);
+
