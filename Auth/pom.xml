@@ -19,7 +19,7 @@
         <targetModelPackage>com.auth.entity</targetModelPackage>
         <!-- XML生成路径 -->
         <targetResourcesProject>${basedir}/src/main/resources</targetResourcesProject>
-        <targetXMLPackage>mapper</targetXMLPackage>
+        <targetXMLPackage>com.auth.mapper</targetXMLPackage>
         <!-- 依赖版本 -->
         <mapper.version>3.4.0</mapper.version>
         <mybatis.version>3.4.2</mybatis.version>
