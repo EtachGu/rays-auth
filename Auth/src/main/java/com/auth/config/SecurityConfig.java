@@ -22,11 +22,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("user").password(passwordEncoder.encode("123")).roles("USER").and().withUser("paul")
-                .password("emu").roles("USER");
-    }
+//    @Autowired
+//    public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication().withUser("user").password(passwordEncoder.encode("123")).roles("USER").and().withUser("paul")
+//                .password("emu").roles("USER");
+//    }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
