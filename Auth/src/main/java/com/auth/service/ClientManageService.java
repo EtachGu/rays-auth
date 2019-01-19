@@ -27,4 +27,35 @@ public class ClientManageService {
         }
         return null;
     }
+
+    public void addClientDetails(ClientDetails clientDetails) {
+        if(JdbcClientDetailsService.class.isInstance(clientDetailsService)){
+             ((JdbcClientDetailsService) clientDetailsService).addClientDetails(clientDetails);
+        }
+    }
+
+    public void updateClientDetails(ClientDetails clientDetails) {
+        if(JdbcClientDetailsService.class.isInstance(clientDetailsService)){
+            ((JdbcClientDetailsService) clientDetailsService).updateClientDetails(clientDetails);
+        }
+    }
+
+    public void updateClientSecret(String clientId, String secret) {
+        if(JdbcClientDetailsService.class.isInstance(clientDetailsService)){
+            ((JdbcClientDetailsService) clientDetailsService).updateClientSecret(clientId, secret);
+        }
+    }
+
+    public void removeClientDetails(String clientId) {
+        if(JdbcClientDetailsService.class.isInstance(clientDetailsService)){
+            ((JdbcClientDetailsService) clientDetailsService).removeClientDetails(clientId);
+        }
+    }
+
+    public List<ClientDetails> listClientDetails() {
+        if(JdbcClientDetailsService.class.isInstance(clientDetailsService)){
+            return  ((JdbcClientDetailsService) clientDetailsService).listClientDetails();
+        }
+        return null;
+    }
 }
