@@ -27,24 +27,12 @@
         <javaClientGenerator targetPackage="${targetMapperPackage}" targetProject="${targetJavaProject}"
                              type="XMLMAPPER"/>
 
-
-        <!--<table tableName="clientdetails" domainObjectName="ClientDetails"></table>-->
-        <!--<table tableName="oauth_access_token" domainObjectName="OauthAccessToken"></table>-->
-        <!--<table tableName="oauth_approvals" domainObjectName="OauthApprovals"></table>-->
-        <!--<table tableName="oauth_client_details" domainObjectName="OauthClientDetails"></table>-->
-        <!--<table tableName="oauth_client_token" domainObjectName="OauthClientToken"></table>-->
-        <!--<table tableName="oauth_code" domainObjectName="OauthCode"></table>-->
-        <!--<table tableName="oauth_refresh_token" domainObjectName="OauthRefreshToken"></table>-->
-        <!--<table tableName="permission" domainObjectName="Permission"></table>-->
-        <!--<table tableName="role" domainObjectName="Role"></table>-->
-        <!--<table tableName="roles_permissions" domainObjectName="RolesPermissions"></table>-->
-        <!--<table tableName="userinfo" domainObjectName="Userinfo"></table>-->
-        <!--<table tableName="userinfos_roles" domainObjectName="UserinfosRoles"></table>-->
-        <table tableName="oauth_access_token" domainObjectName="OAuthAccessToken"></table>
-        <table tableName="oauth_approvals" domainObjectName="OAuthApprovals"></table>
-        <table tableName="oauth_client_details" domainObjectName="OAuthClientDetails"></table>
-        <table tableName="oauth_client_token" domainObjectName="OAuthClientToken"></table>
-        <table tableName="oauth_code" domainObjectName="OAuthCode"></table>
-        <table tableName="oauth_refresh_token" domainObjectName="OAuthRefreshToken"></table>
+        <!--<table tableName="oauth_access_token" domainObjectName="OAuthAccessToken"></table>-->
+        <!--<table tableName="oauth_approvals" domainObjectName="OAuthApprovals"></table>-->
+        <!--<table tableName="oauth_client_details" domainObjectName="OAuthClientDetails"></table>-->
+        <!--<table tableName="oauth_client_token" domainObjectName="OAuthClientToken"></table>-->
+        <!--<table tableName="oauth_code" domainObjectName="OAuthCode"></table>-->
+        <!--<table tableName="oauth_refresh_token" domainObjectName="OAuthRefreshToken"></table>-->
+        <!--<table tableName="oauth_user" domainObjectName="OAuthUser"></table>-->
     </context>
 </generatorConfiguration>
