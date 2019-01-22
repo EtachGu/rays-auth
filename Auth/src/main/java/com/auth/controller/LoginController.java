@@ -1,5 +1,6 @@
 package com.auth.controller;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,10 @@ public class LoginController {
 
     @GetMapping("/join")
     public String signup(){
+        // Is already login in
+        if(SecurityContextHolder.getContext().getAuthentication().isAuthenticated() && !SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            return "redirect:";
+        }
         return "join";
     }
 }

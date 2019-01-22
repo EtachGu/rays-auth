@@ -48,6 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/authentication/form",
                         "/login",
                         "/join",
+                        "/signup",
                         "/**/*.js",
                         "/**/*.css",
                         "/**/*.jpg",
