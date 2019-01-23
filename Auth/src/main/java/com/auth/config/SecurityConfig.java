@@ -1,5 +1,6 @@
 package com.auth.config;
 
+import com.auth.service.UserManageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +10,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+
+import javax.sql.DataSource;
 
 /**
  * @author: Gu danpeng
@@ -21,6 +25,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Autowired
+    private UserManageService userManageService;
 
 //    @Autowired
 //    public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
@@ -73,9 +83,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .exceptionHandling()
 //                .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/"))
                 .and()
+                .rememberMe()
+                .tokenValiditySeconds(604800) // one week
+                //指定记住登录信息所使用的数据源
+                .tokenRepository(tokenRepository())
+                .userDetailsService(userManageService)
+                .and()
                 .cors()
                 .and()
                 .csrf().disable();
         // @formatter:on
+    }
+
+    @Bean
+    public JdbcTokenRepositoryImpl tokenRepository(){
+        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+        jdbcTokenRepository.setDataSource(dataSource);
+        return jdbcTokenRepository;
     }
 }

@@ -21,7 +21,7 @@
     <body>
         <div class="container">
             <form class="form-signin" method="post" action="signup">
-                <h2 class="form-signin-heading">Create your account</h2>
+                <h2 class="form-signin-heading">Create an account</h2>
                 <p>
                     <label for="username" class="sr-only">Username</label>
                     <input
@@ -35,14 +35,14 @@
                     />
                 </p>
                 <p>
-                    <label for="email" class="sr-only">Password</label>
+                    <label for="email" class="sr-only">Email</label>
                     <input
-                        type="text"
-                        id="email"
-                        name="email"
-                        class="form-control"
-                        placeholder="email"
-                        required=""
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="form-control"
+                            placeholder="Email"
+                            required="required"
                     />
                 </p>
                 <p>
@@ -52,11 +52,13 @@
                             id="password"
                             name="password"
                             class="form-control"
-                            placeholder="Password"
-                            required=""
+                            placeholder="Password - minimum length 8 characters"
+                            required="required"
+                            pattern=".{8,}"
+                            title="Minimum length is 8 characters"
                     />
                 </p>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Create an account</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
             </form>
         </div>
     </body>
