@@ -1,7 +1,6 @@
 package com.auth;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import tk.mybatis.spring.annotation.MapperScan;
 
 /**
  * @author: Gu danpeng
@@ -9,8 +8,8 @@ import tk.mybatis.spring.annotation.MapperScan;
  * @version：1.0
  */
 @SpringBootApplication
-public class SpringApplication {
+public class RaysAuthApplication {
     public static void main(String[] args) {
-        org.springframework.boot.SpringApplication.run(SpringApplication.class, args);
+        org.springframework.boot.SpringApplication.run(RaysAuthApplication.class, args);
     }
 }
