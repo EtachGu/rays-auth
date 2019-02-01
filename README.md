@@ -3,6 +3,11 @@
 基于Spring Security OAuth2.0提供授权与认证中心服务
 
 
+## Quick Start
+
+init database `evan_sso`, create tables from `evan_sso.sql`
+
+run start
 
 ## 总体架构图
 
