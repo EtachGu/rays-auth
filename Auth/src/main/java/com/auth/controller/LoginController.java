@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
  * @data: 2018-12-2
  * @version：1.0
  */
-
 @Controller
 public class LoginController {
     @GetMapping("/login")
