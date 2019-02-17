@@ -5,9 +5,10 @@
 
 ## Quick Start
 
-init database `evan_sso`, create tables from `evan_sso.sql`
+Requirement 
+before you start this project, you should create a schema which is named `evan_sso`, then you can create tables by executing `evan_sso.sql`
 
-run start
+Open with IDEA and run start `Auth`
 
 ## 总体架构图
 
