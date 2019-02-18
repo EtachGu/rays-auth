@@ -18,12 +18,4 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping("/join")
-    public String signup(){
-        // Is already login in
-        if(SecurityContextHolder.getContext().getAuthentication().isAuthenticated() && !SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
-            return "redirect:";
-        }
-        return "join";
-    }
 }

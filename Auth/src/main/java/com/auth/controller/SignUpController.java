@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,7 +35,7 @@ public class SignUpController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @PostMapping("/signup")
+    @PostMapping("/sign_up")
     public String createUser(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response){
         OAuthUser oAuthUser = new OAuthUser();
         oAuthUser.setUserName(username);
@@ -42,7 +43,7 @@ public class SignUpController {
 
         if(oAuthUserMapper.existsWithPrimaryKey(username)){
             response.setStatus(HttpStatus.BAD_REQUEST.value());
-            return "join";
+            return "register";
         } else {
             oAuthUserMapper.insert(oAuthUser);
         }
@@ -56,5 +57,14 @@ public class SignUpController {
 
         return "redirect:";
 
+    }
+
+    @GetMapping("/register")
+    public String register(){
+        // Is already login in
+        if(SecurityContextHolder.getContext().getAuthentication().isAuthenticated() && !SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
+            return "redirect:";
+        }
+        return "register";
     }
 }
