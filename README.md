@@ -1,6 +1,8 @@
 # OAuth Server 
 
-基于Spring Security OAuth2.0提供授权与认证中心服务
+An Authentication & Authorization Server which is based on Spring Security OAuth2.
+
+授权与认证中心服务
 
 
 ## Quick Start
@@ -10,12 +12,12 @@ before you start this project, you should create a schema which is named `evan_s
 
 Open with IDEA and run start `Auth`
 
-## 总体架构图
+## 总体架构图(Architecture)
 
 
 ## API
 
-接口名称 | HTTP方法 | 说明 
+接口名称(URL) | HTTP方法 | 说明 
 -------- | -------- | -------- 
 /oauth/token | | 获取访问令牌  (the token endpoint)
 /oauth/authorize | | 授权 (the authorization endpoint)
@@ -23,7 +25,7 @@ Open with IDEA and run start `Auth`
 /oauth/token_key | |获取 JWT token
 
 
-## 页面
+## 页面(Pages)
 
 路由 | HTTP方法 | 说明 
 -------- | -------- | -------- 
@@ -31,7 +33,7 @@ Open with IDEA and run start `Auth`
 /oauth/error |GET | 失败的页面 (used to render errors in the authorization server)
 
 
-## 模块
+## 模块(Modules)
 
 序号 | 接口 | 方法 | 说明 | 备注
 ---  | ---  | ---  | ---  | ----
@@ -49,8 +51,14 @@ Open with IDEA and run start `Auth`
 
 
 
+## Todo list
+
+- Token缓存
+- 登录人机验证
+- 日志记录
+- 支持JWT
 
 
-## 参考
+## Reference
 
 [1] http://projects.spring.io/spring-security-oauth/docs/oauth2.html 
