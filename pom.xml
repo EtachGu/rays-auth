@@ -12,6 +12,7 @@
         <module>Auth</module>
         <module>client1</module>
         <module>client2</module>
+        <module>client3</module>
     </modules>
 
     <dependencyManagement>
