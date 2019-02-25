@@ -61,7 +61,7 @@ public class SignUpController {
 
     @GetMapping("/register")
     public String register(){
-        // Is already login in
+        // Is already login
         if(SecurityContextHolder.getContext().getAuthentication().isAuthenticated() && !SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")){
             return "redirect:";
         }
