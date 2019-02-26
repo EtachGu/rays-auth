@@ -63,5 +63,6 @@ Open with IDEA and run start `Auth`
 
 ## Reference
 
-[1] http://projects.spring.io/spring-security-oauth/docs/oauth2.html 
+[1] http://projects.spring.io/spring-security-oauth/docs/oauth2.html
+
 [2] https://spring.io/guides/tutorials/spring-boot-oauth2/#_social_login_manual
