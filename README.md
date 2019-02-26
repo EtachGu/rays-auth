@@ -7,7 +7,8 @@ An Authentication & Authorization Server which is based on Spring Security OAuth
 
 ## Quick Start
 
-Requirement 
+Requirement
+
 before you start this project, you should create a schema which is named `evan_sso`, then you can create tables by executing `evan_sso.sql`
 
 Open with IDEA and run start `Auth`
@@ -57,6 +58,7 @@ Open with IDEA and run start `Auth`
 - 登录人机验证
 - 日志记录
 - 支持JWT
+- 管理员权限
 
 
 ## Reference
