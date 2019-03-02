@@ -46,7 +46,7 @@ import java.util.Arrays;
 @EnableOAuth2Client
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Resource
+    @Autowired
     private OAuth2ClientContext oauth2ClientContext;
 
     @Autowired
