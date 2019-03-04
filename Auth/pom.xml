@@ -33,6 +33,7 @@
         <mapper-spring-boot-starter.version>2.1.1</mapper-spring-boot-starter.version>
         <alibaba-druid.version>1.1.10</alibaba-druid.version>
         <thymeleaf.version>2.1.1.RELEASE</thymeleaf.version>
+        <spring-boot-start-data-redis.version>2.1.3.RELEASE</spring-boot-start-data-redis.version>
     </properties>
 
     <dependencies>
@@ -118,6 +119,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
             <version>${thymeleaf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <version>${spring-boot-start-data-redis.version}</version>
         </dependency>
     </dependencies>
     <build>
