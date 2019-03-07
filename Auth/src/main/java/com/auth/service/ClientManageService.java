@@ -1,5 +1,6 @@
 package com.auth.service;
 
+import com.auth.entity.OAuthClientDetails;
 import org.springframework.beans.factory.annotation.Autowired;;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.oauth2.provider.ClientDetails;
@@ -20,6 +21,13 @@ public class ClientManageService {
     @Autowired
     @Qualifier("jdbcClientDetailService")
     private ClientDetailsService clientDetailsService;
+
+    public ClientDetails getClientDetailsById(String clientId){
+        if(JdbcClientDetailsService.class.isInstance(clientDetailsService)){
+            return  ((JdbcClientDetailsService) clientDetailsService).loadClientByClientId(clientId);
+        }
+        return null;
+    }
 
     public List<ClientDetails> getClientDetails() {
         if(JdbcClientDetailsService.class.isInstance(clientDetailsService)){
@@ -57,5 +65,11 @@ public class ClientManageService {
             return  ((JdbcClientDetailsService) clientDetailsService).listClientDetails();
         }
         return null;
+    }
+
+    public void insertOAuthClientDetails(OAuthClientDetails oAuthClientDetails){
+//        if(JdbcClientDetailsService.class.isInstance(clientDetailsService)){
+//            ((JdbcClientDetailsService) clientDetailsService).addClientDetails(oAuthClientDetails);
+//        }
     }
 }
