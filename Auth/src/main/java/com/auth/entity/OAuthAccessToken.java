@@ -1,5 +1,9 @@
 package com.auth.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -30,9 +34,15 @@ public class OAuthAccessToken {
     @Column(name = "deleted_at")
     private Date deletedAt;
 
+    @JsonIgnore
     private byte[] token;
 
+    @JsonIgnore
     private byte[] authentication;
+
+    private OAuth2AccessToken oAuth2AccessToken;
+
+    private OAuth2Authentication oAuth2Authentication;
 
     /**
      * @return authentication_id
@@ -172,5 +182,23 @@ public class OAuthAccessToken {
      */
     public void setAuthentication(byte[] authentication) {
         this.authentication = authentication;
+    }
+
+
+    public OAuth2AccessToken getOAuth2AccessToken() {
+        return oAuth2AccessToken;
+    }
+
+    public void setOAuth2AccessToken(OAuth2AccessToken oAuth2AccessToken) {
+        this.oAuth2AccessToken = oAuth2AccessToken;
+    }
+
+
+    public OAuth2Authentication getOAuth2Authentication() {
+        return oAuth2Authentication;
+    }
+
+    public void setOAuth2Authentication(OAuth2Authentication oAuth2Authentication) {
+        this.oAuth2Authentication = oAuth2Authentication;
     }
 }
