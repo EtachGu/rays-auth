@@ -16,4 +16,16 @@
     select *  from oauth_user
     where user_name = #{userName,jdbcType=VARCHAR}
   </select>
+  
+  <select id="queryUserPermission" resultType="java.lang.String" parameterType="java.lang.String">
+    select permission.`name`
+    from permission
+    where id in (
+      select permission_id from roles_permissions where role_id in (
+          select role_id
+          from users_roles
+          where user_name = #{userName, jdbcType=VARCHAR}
+      )
+    )
+  </select>
 </mapper>

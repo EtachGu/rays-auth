@@ -33,6 +33,9 @@
         <!--<table tableName="oauth_client_token" domainObjectName="OAuthClientToken"></table>-->
         <!--<table tableName="oauth_code" domainObjectName="OAuthCode"></table>-->
         <!--<table tableName="oauth_refresh_token" domainObjectName="OAuthRefreshToken"></table>-->
-        <!--<table tableName="oauth_user" domainObjectName="OAuthUser"></table>-->
+        <table tableName="role" domainObjectName="Role"></table>
+        <table tableName="permission" domainObjectName="Permission"></table>
+        <table tableName="users_roles" domainObjectName="UsersRoles"></table>
+        <table tableName="roles_permissions" domainObjectName="RolesPermissions"></table>
     </context>
 </generatorConfiguration>

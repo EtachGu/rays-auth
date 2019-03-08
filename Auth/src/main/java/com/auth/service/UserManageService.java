@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author: Gu danpeng
@@ -34,9 +35,12 @@ public class UserManageService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         OAuthUser user =
                 oAuthUserMapper.queryByUserName(username);
-//        user.get().setPermissions(this.getPermissions(user.get().getRoles()));
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+        Collection<GrantedAuthority> authorities = oAuthUserMapper.queryUserPermission(username)
+                .stream()
+                .map(e -> new SimpleGrantedAuthority(e))
+                .collect(Collectors.toList());
+
         UserDetails userDetails = new User(user.getUserName(),
                 user.getPassword(),
                 authorities);
