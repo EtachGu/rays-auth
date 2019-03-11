@@ -41,9 +41,9 @@ Open with IDEA and run start `Auth`
 1  | /oauth/token | POST | 获取访问令牌 | 
 2  | /oauth/authorize | GET | 授权 | 
 3  | /oauth/check_token | GET/POST | 校验Token，获取token信息 | 
-4  | /rest/access_tokens | GET | 获取所有访问令牌 | 
-5  | /rest/revoke_token/{token} | POST | 吊销访问令牌 | 
-6  | /rest/revoke_refresh_token/{token} | POST | 吊销刷新令牌 | 
+4  | /rest/access-tokens | GET | 获取所有访问令牌 | 
+5  | /rest/revoke-token/{token} | POST | 吊销访问令牌 | 
+6  | /rest/revoke-refresh-token/{token} | POST | 吊销刷新令牌 | 
 7  | /rest/clients/{client_id} | GET/DELETE/PUT | 查询，删除，修改客户端 | 
 8  | /rest/clients | POST | 创建客户端 | 
 9  | /rest/users/{username} | GET/DELETE/PUT | 查询，删除，修改用户 | 
@@ -59,6 +59,7 @@ Open with IDEA and run start `Auth`
 - 日志记录
 - 支持JWT
 - 管理员权限
+- 登录监控、统计
 
 
 ## Reference
