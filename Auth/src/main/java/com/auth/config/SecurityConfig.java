@@ -53,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
         http.formLogin().loginPage("/login")
+                .defaultSuccessUrl("/home")
                 .and().authorizeRequests()
                 .antMatchers("/authentication/require",
                         "/authentication/form",

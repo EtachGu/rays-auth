@@ -6,12 +6,9 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Please sign in</title>
-        <link
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-            crossorigin="anonymous"
-        />
+        <link href="/webjars/bootstrap/css/bootstrap.min.css"
+              th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+              rel="stylesheet" media="screen" />
         <link
             href="sign.css"
             rel="stylesheet"
@@ -21,6 +18,7 @@
         <div class="container">
             <form class="form-signin" method="post" action="login">
                 <h2 class="form-signin-heading">Please Sign In</h2>
+                <div th:if="${loginError}" class="alert alert-danger">Wrong user or password</div>
                 <p>
                     <label for="username" class="sr-only">Username</label>
                     <input
