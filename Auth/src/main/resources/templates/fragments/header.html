@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top" th:fragment="header">
+    <div class="container">
+        <a class="navbar-brand" href="#">Rays Auth</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"
+                    th:classappend="${#request.getServletPath() == '/home' ? 'active' : ''}">
+                    <a href="home"
+                       class="nav-link"
+                       th:href="@{/home}">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item"
+                    th:classappend="${#request.getServletPath() == '/users' ? 'active' : ''}">
+                    <a href="users"
+                       class="nav-link"
+                       th:href="@{/users}">
+                        Users
+                    </a>
+                </li>
+                <li class="nav-item"
+                    th:classappend="${#request.getServletPath() == '/clients' ? 'active' : ''}">
+                    <a href="clients"
+                       class="nav-link"
+                       th:href="@{/clients}">
+                        Clients
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="setting"
+                       class="nav-link"
+                       th:href="@{/setting}">
+                        Setting
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav px-3">
+                <li class="navbar-text">
+                    <span sec:authentication="name">Admin</span>
+                </li>
+                <li>
+                    <a class="nav-link" th:href="@{/logout}">Sign out</a>
+                </li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+</body>
+</html>

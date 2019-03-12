@@ -69,3 +69,5 @@ Open with IDEA and run start `Auth`
 [2] https://spring.io/guides/tutorials/spring-boot-oauth2/#_social_login_manual
 
 [3] https://developers.google.com/recaptcha/docs/v3
+
+[4] https://www.thymeleaf.org/doc/articles/springsecurity.html
