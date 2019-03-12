@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+</head>
+<body>
+    <div th:replace="fragments/header :: header"></div>
+    <form class="container" th:action="${'edit-client/' + client.getClientId()}" method="POST">
+        <div class="form-group row">
+            <label for="clientId" class="col-sm-2 col-form-label">Client Id</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="clientId" placeholder="ClinetId"
+                       name="clientId"
+                 th:value="${client.getClientId()}" disabled>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="clientSecret" class="col-sm-2 col-form-label">Client Secret</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="clientSecret" placeholder="Client Secret"
+                       name="clientSecret"
+                th:value="${client.getClientSecret()}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-2">Grant Types</div>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="authorizationCode" name="authorizationCode"
+                    th:checked="${grantTypes.contains('authorization_code')}">
+                    <label class="form-check-label" for="authorizationCode">
+                        Authorization Code
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="password" name="password"
+                           th:checked="${grantTypes.contains('password')}">
+                    <label class="form-check-label" for="password">
+                        Password
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="clientCredentials" name="clientCredentials"
+                           th:checked="${grantTypes.contains('client_credentials')}">
+                    <label class="form-check-label" for="clientCredentials">
+                        Client Credentials
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="refreshToken" name="refreshToken"
+                           th:checked="${grantTypes.contains('refresh_token')}">
+                    <label class="form-check-label" for="refreshToken">
+                        Refresh Token
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Redirect Uri</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="redirectUris"
+                       th:each="redirectUri: ${redirectUris}"
+                       th:value="${redirectUri}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+    </form>
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
