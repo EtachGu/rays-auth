@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+</head>
+<body>
+    <div th:replace="fragments/header :: header"></div>
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">UserName</th>
+                <th scope="col">NickName</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user,iterStat : ${users}">
+                <td scope="row" th:text="${iterStat.count}">-</td>
+                <td th:text="${user.getUserName()}">-</td>
+                <td th:text="${user.getNickName()}">-</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
