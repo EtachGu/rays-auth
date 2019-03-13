@@ -9,50 +9,44 @@
 </head>
 <body>
     <div th:replace="fragments/header :: header"></div>
-    <form class="container" th:action="${'edit-client/' + client.getClientId()}" method="POST">
+    <form class="container" th:action="@{/new-client}" method="POST">
         <div class="form-group row">
             <label for="clientId" class="col-sm-2 col-form-label">Client Id</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="clientId" placeholder="ClinetId"
-                       name="clientId"
-                 th:value="${client.getClientId()}" disabled>
+                       name="clientId">
             </div>
         </div>
         <div class="form-group row">
             <label for="clientSecret" class="col-sm-2 col-form-label">Client Secret</label>
             <div class="col-sm-10">
                 <input type="password" class="form-control" id="clientSecret" placeholder="Client Secret"
-                       name="clientSecret"
-                th:value="${client.getClientSecret()}">
+                       name="clientSecret">
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-2">Grant Types</div>
             <div class="col-sm-10">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="authorizationCode" name="authorizationCode"
-                    th:checked="${grantTypes.contains('authorization_code')}">
+                    <input class="form-check-input" type="checkbox" id="authorizationCode" name="authorizationCode">
                     <label class="form-check-label" for="authorizationCode">
                         Authorization Code
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="password" name="password"
-                           th:checked="${grantTypes.contains('password')}">
+                    <input class="form-check-input" type="checkbox" id="password" name="password">
                     <label class="form-check-label" for="password">
                         Password
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="clientCredentials" name="clientCredentials"
-                           th:checked="${grantTypes.contains('client_credentials')}">
+                    <input class="form-check-input" type="checkbox" id="clientCredentials" name="clientCredentials">
                     <label class="form-check-label" for="clientCredentials">
                         Client Credentials
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="refreshToken" name="refreshToken"
-                           th:checked="${grantTypes.contains('refresh_token')}">
+                    <input class="form-check-input" type="checkbox" id="refreshToken" name="refreshToken">
                     <label class="form-check-label" for="refreshToken">
                         Refresh Token
                     </label>
@@ -60,19 +54,29 @@
             </div>
         </div>
         <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Scopes</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="scope" placeholder="separated by ','">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Auto Approve</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="autoapprove" placeholder="separated by ','">
+            </div>
+        </div>
+        <div class="form-group row">
             <label class="col-sm-2 col-form-label">Redirect Uri</label>
             <div class="col-sm-10">
                 <button type="button" class="btn btn-primary my-2" onclick="addRedirectUri()">Add</button>
                 <div id="redirectList">
-                    <input type="text" class="form-control" name="redirectUris"
-                           th:each="redirectUri: ${redirectUris}"
-                           th:value="${redirectUri}">
+                    <input type="text" class="form-control" name="redirectUris">
                 </div>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </form>

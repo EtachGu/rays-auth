@@ -1,5 +1,8 @@
 package com.auth.entity;
 
+import org.springframework.security.oauth2.provider.ClientDetails;
+import org.springframework.security.oauth2.provider.client.BaseClientDetails;
+
 import java.util.Date;
 import javax.persistence.*;
 
@@ -239,5 +242,19 @@ public class OAuthClientDetails {
      */
     public void setDeletedAt(Date deletedAt) {
         this.deletedAt = deletedAt;
+    }
+
+    public static ClientDetails ClientDetailsBuilder(OAuthClientDetails oAuthClientDetails){
+
+        BaseClientDetails newClientDetails = new BaseClientDetails(oAuthClientDetails.getClientId(),
+                oAuthClientDetails.getResourceIds(),
+                oAuthClientDetails.getScope(),
+                oAuthClientDetails.getAuthorizedGrantTypes(),
+                oAuthClientDetails.getAuthorities(),
+                oAuthClientDetails.getWebServerRedirectUri()
+                );
+        newClientDetails.setClientSecret(oAuthClientDetails.getClientSecret());
+//        newClientDetails.setAdditionalInformation();
+        return newClientDetails;
     }
 }
