@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+</head>
+<body>
+    <div th:replace="fragments/header :: header"></div>
+    <form class="container" th:action="${'edit-token/' + token.getAuthenticationId()}" method="POST">
+        <div class="form-group row">
+            <label for="accessToken" class="col-sm-2 col-form-label">Access Token</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="accessToken" placeholder="Access Token"
+                       name="accessToken"
+                 th:value="${token.getOAuth2AccessToken().getValue()}" disabled>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="expiredAt" class="col-sm-2 col-form-label">Expired At</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="expiredAt" placeholder="Expired dAt"
+                       name="expiredAt"
+                th:value="${#dates.format(token.getOAuth2AccessToken().getExpiration(), 'yyyy-MM-dd')}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+    </form>
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

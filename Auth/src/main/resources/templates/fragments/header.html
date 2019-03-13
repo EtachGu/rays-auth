@@ -24,6 +24,14 @@
                     </a>
                 </li>
                 <li class="nav-item"
+                    th:classappend="${#request.getServletPath() == '/tokens' ? 'active' : ''}">
+                    <a href="tokens"
+                       class="nav-link"
+                       th:href="@{/tokens}">
+                        Tokens
+                    </a>
+                </li>
+                <li class="nav-item"
                     th:classappend="${#request.getServletPath() == '/users' ? 'active' : ''}">
                     <a href="users"
                        class="nav-link"

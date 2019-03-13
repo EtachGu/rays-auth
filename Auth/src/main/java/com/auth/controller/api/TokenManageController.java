@@ -39,23 +39,15 @@ public class TokenManageController {
 
     @GetMapping("/access-tokens")
     public List<?> getOAuth2AccessToken(@RequestParam(value = "showDetails", required = false, defaultValue = "false") boolean showDetails){
-        List<OAuthAccessToken> listAccessToken = tokenManageService.getAccessTokens();
 
         if(!showDetails){
+            List<OAuthAccessToken> listAccessToken = tokenManageService.getAccessTokens();
             return listAccessToken.stream()
                     .map(e -> (OAuth2AccessToken) SerializationUtils.deserialize(e.getToken()))
                     .collect(Collectors.toList());
         }
 
-        for (OAuthAccessToken fullToken : listAccessToken) {
-            OAuth2AccessToken token = (OAuth2AccessToken) SerializationUtils.deserialize(fullToken.getToken());
-
-            OAuth2Authentication auth2Authentication = (OAuth2Authentication) SerializationUtils.deserialize((fullToken.getAuthentication()));
-            fullToken.setOAuth2AccessToken(token);
-            fullToken.setOAuth2Authentication(auth2Authentication);
-        }
-
-        return  listAccessToken;
+        return tokenManageService.getDetailAccessTokens();
     }
 
 

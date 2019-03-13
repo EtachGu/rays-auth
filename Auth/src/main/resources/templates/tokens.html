@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+</head>
+<body>
+    <div th:replace="fragments/header :: header"></div>
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Access Token</th>
+                <th scope="col">Type</th>
+                <th scope="col">Scope</th>
+                <th scope="col">Authorities</th>
+                <th scope="col">Expired At</th>
+                <th scope="col">User</th>
+                <th scope="col">Client Id</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="token,iterStat : ${tokens}">
+                <td scope="row" th:text="${iterStat.count}">-</td>
+                <td th:text="${token.getOAuth2AccessToken().getValue()}">-</td>
+                <td th:text="${token.getOAuth2AccessToken().getTokenType()}">-</td>
+                <td th:text="${token.getOAuth2AccessToken().getScope()}">-</td>
+                <td th:text="${token.getOAuth2Authentication().getAuthorities()}">-</td>
+                <td th:text="${#dates.format(token.getOAuth2AccessToken().getExpiration(),'yyyy-dd-MM hh:mm')}"
+                    th:classappend="${token.getOAuth2AccessToken().getExpiration().before(#dates.createNow()) == true ? 'text-danger': 'text-success'}">-</td>
+                <td th:text="${token.getUserName()}">-</td>
+                <td th:text="${token.getClientId()}">-</td>
+                <td>
+                    <a role="button" class="btn btn-outline-primary"
+                       th:href="${'edit-token?authenticationId=' + token.getAuthenticationId()}">Edit</a>
+                    <a role="button" class="btn btn-outline-danger"
+                       th:href="${'revoke-token?token=' + token.getOAuth2AccessToken().getValue()}">Revoke</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
