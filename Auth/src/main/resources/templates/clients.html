@@ -20,6 +20,7 @@
                 <th scope="col">ClientId</th>
                 <th scope="col">GrantTypes</th>
                 <th scope="col">Scope</th>
+                <th scope="col">Authorities</th>
                 <th scope="col">RedirectUri</th>
                 <th scope="col"></th>
             </tr>
@@ -30,6 +31,7 @@
                 <td th:text="${client.getClientId()}">-</td>
                 <td th:text="${client.getAuthorizedGrantTypes()}">-</td>
                 <td th:text="${client.getScope()}">-</td>
+                <td th:text="${client.getAuthorities()}">-</td>
                 <td th:text="${client.getRegisteredRedirectUri()}">-</td>
                 <td>
                     <a role="button" class="btn btn-outline-primary"

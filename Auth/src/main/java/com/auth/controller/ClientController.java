@@ -45,7 +45,7 @@ public class ClientController {
 
     @GetMapping("/edit-client")
     public String editClient(Model model,
-                             @RequestParam(value = "clientId",required = false) String clientId){
+                             @RequestParam("clientId") String clientId){
         OAuthClientDetails client = oAuthClientDetailsMapper.selectByPrimaryKey(clientId);
 
         List<String> grantTypes = Arrays.asList(client.getAuthorizedGrantTypes().split(","));
@@ -57,9 +57,45 @@ public class ClientController {
         return "edit-client";
     }
 
-    @PostMapping("/edit-client/{clientId}")
-    public void updateClient(@PathVariable String clientId, HttpServletRequest request){
+    @PostMapping("/edit-client")
+    public String updateClient(@RequestParam String clientId,
+                             @RequestParam(value = "clientSecret",required = false) String clientSecret,
+                             @RequestParam(value = "authorizationCode",required = false) String authorizationCode,
+                             @RequestParam(value = "password",required = false) String password,
+                             @RequestParam(value = "clientCredentials", required = false) String clientCredentials,
+                             @RequestParam(value = "refreshToken", required = false) String refreshToken,
+                             @RequestParam(value = "scope", required = false) String scope,
+                             @RequestParam(value = "autoapprove", required = false) String autoapprove,
+                             @RequestParam(value = "authorities", required = false) String authorities,
+                             @RequestParam(value = "redirectUris", required = false) List<String> redirectUris,
+                             Model model,
+                             HttpServletRequest request){
+        if(oAuthClientDetailsMapper.existsWithPrimaryKey(clientId)) {
+            OAuthClientDetails client  = new OAuthClientDetails();
+            client.setClientId(clientId);
+            List<String> grantTypesStr = new ArrayList<>(4);
+            if ("on".equals(authorizationCode)){
+                grantTypesStr.add("authorization_code");
+            }
+            if ("on".equals(refreshToken)){
+                grantTypesStr.add("refresh_token");
+            }
+            if ("on".equals(password)){
+                grantTypesStr.add("password");
+            }
+            if ("on".equals(clientCredentials)){
+                grantTypesStr.add("client_credentials");
+            }
 
+            client.setAuthorizedGrantTypes(StringUtils.join(grantTypesStr,","));
+            client.setScope(scope);
+            client.setAutoapprove(autoapprove);
+            client.setAuthorities(authorities);
+            client.setWebServerRedirectUri(StringUtils.join(redirectUris,","));
+
+            clientManageService.updateClientDetails(OAuthClientDetails.ClientDetailsBuilder(client));
+        }
+        return "redirect:/clients";
     }
 
     @GetMapping("/new-client")
@@ -76,6 +112,7 @@ public class ClientController {
                             @RequestParam(value = "refreshToken", required = false) String refreshToken,
                             @RequestParam(value = "scope", required = false) String scope,
                             @RequestParam(value = "autoapprove", required = false) String autoapprove,
+                            @RequestParam(value = "authorities", required = false) String authorities,
                             @RequestParam(value = "redirectUris", required = false) List<String> redirectUris,
                             Model model,
                             HttpServletRequest request){
@@ -98,7 +135,10 @@ public class ClientController {
                 grantTypesStr.add("client_credentials");
             }
 
-            client.setAuthorities(StringUtils.join(grantTypesStr,","));
+            client.setAuthorizedGrantTypes(StringUtils.join(grantTypesStr,","));
+            client.setScope(scope);
+            client.setAutoapprove(autoapprove);
+            client.setAuthorities(authorities);
             client.setWebServerRedirectUri(StringUtils.join(redirectUris,","));
 
             clientManageService.addClientDetails(OAuthClientDetails.ClientDetailsBuilder(client));

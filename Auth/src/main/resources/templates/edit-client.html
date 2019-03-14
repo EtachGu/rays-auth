@@ -9,21 +9,13 @@
 </head>
 <body>
     <div th:replace="fragments/header :: header"></div>
-    <form class="container" th:action="${'edit-client/' + client.getClientId()}" method="POST">
+    <form class="container" th:action="${'edit-client?clientId=' + client.getClientId() }" method="POST">
         <div class="form-group row">
             <label for="clientId" class="col-sm-2 col-form-label">Client Id</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="clientId" placeholder="ClinetId"
                        name="clientId"
                  th:value="${client.getClientId()}" disabled>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="clientSecret" class="col-sm-2 col-form-label">Client Secret</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" id="clientSecret" placeholder="Client Secret"
-                       name="clientSecret"
-                th:value="${client.getClientSecret()}">
             </div>
         </div>
         <div class="form-group row">
@@ -57,6 +49,27 @@
                         Refresh Token
                     </label>
                 </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Scopes</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="scope" placeholder="separated by ','"
+                th:value="${client.getScope()}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Auto Approve</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="autoapprove" placeholder="separated by ','"
+                th:value="${client.getAutoapprove()}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Authorities</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="authorities" placeholder="separated by ','"
+                       th:value="${client.getAuthorities()}">
             </div>
         </div>
         <div class="form-group row">
