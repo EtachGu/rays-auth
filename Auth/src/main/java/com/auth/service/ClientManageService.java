@@ -1,6 +1,7 @@
 package com.auth.service;
 
 import com.auth.entity.OAuthClientDetails;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.oauth2.provider.ClientDetails;
@@ -8,6 +9,7 @@ import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -71,5 +73,23 @@ public class ClientManageService {
 //        if(JdbcClientDetailsService.class.isInstance(clientDetailsService)){
 //            ((JdbcClientDetailsService) clientDetailsService).addClientDetails(oAuthClientDetails);
 //        }
+    }
+
+    public List<String> getGrantTypes(OAuthClientDetails client){
+        String grantTypeStr = client.getAuthorizedGrantTypes();
+        if(StringUtils.isBlank(grantTypeStr)) {
+            return null;
+        }
+        List<String> grantTypes = Arrays.asList(grantTypeStr.split(","));
+        return grantTypes;
+    }
+
+    public List<String> getRedirectUris(OAuthClientDetails client){
+        String redirectUriStr = client.getWebServerRedirectUri();
+        if(StringUtils.isBlank(redirectUriStr)) {
+            return null;
+        }
+        List<String> redirectUris = Arrays.asList(redirectUriStr.split(","));
+        return redirectUris;
     }
 }

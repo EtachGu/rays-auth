@@ -9,7 +9,8 @@
 </head>
 <body>
     <div th:replace="fragments/header :: header"></div>
-    <form class="container" th:action="${'edit-token/' + token.getAuthenticationId()}" method="POST">
+    <div class="container alert alert-danger" th:if="${errorInfo}">Token is not exist !</div>
+    <form class="container" th:if="${!errorInfo}" th:action="${'edit-token/' + token.getAuthenticationId()}" method="POST">
         <div class="form-group row">
             <label for="accessToken" class="col-sm-2 col-form-label">Access Token</label>
             <div class="col-sm-10">

@@ -37,7 +37,12 @@ public class TokenController {
     @GetMapping("/edit-token")
     public String editToken(@RequestParam String authenticationId, Model model){
         OAuthAccessToken token = tokenManageService.getDetailAccessToken(authenticationId);
-        model.addAttribute("token",token);
+        boolean errorInfo = true;
+        if(token != null){
+            model.addAttribute("token",token);
+            errorInfo = false;
+        }
+        model.addAttribute("errorInfo", errorInfo);
         return "edit-token";
     }
 

@@ -9,7 +9,8 @@
 </head>
 <body>
     <div th:replace="fragments/header :: header"></div>
-    <form class="container" th:action="${'edit-client?clientId=' + client.getClientId() }" method="POST">
+    <div class="container alert alert-danger" th:if="${errorInfo}">Client is not exist !</div>
+    <form class="container" th:if="${!errorInfo}" th:action="${'edit-client?clientId=' + client.getClientId() }" method="POST">
         <div class="form-group row">
             <label for="clientId" class="col-sm-2 col-form-label">Client Id</label>
             <div class="col-sm-10">

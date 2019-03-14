@@ -31,7 +31,7 @@
                 <td th:text="${token.getOAuth2AccessToken().getTokenType()}">-</td>
                 <td th:text="${token.getOAuth2AccessToken().getScope()}">-</td>
                 <td th:text="${token.getOAuth2Authentication().getAuthorities()}">-</td>
-                <td th:text="${#dates.format(token.getOAuth2AccessToken().getExpiration(),'yyyy-dd-MM hh:mm')}"
+                <td th:text="${#dates.format(token.getOAuth2AccessToken().getExpiration(),'yyyy-MM-dd hh:mm')}"
                     th:classappend="${token.getOAuth2AccessToken().getExpiration().before(#dates.createNow()) == true ? 'text-danger': 'text-success'}">-</td>
                 <td th:text="${token.getUserName()}">-</td>
                 <td th:text="${token.getClientId()}">-</td>

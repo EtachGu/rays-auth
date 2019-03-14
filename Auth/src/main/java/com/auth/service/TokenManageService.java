@@ -42,6 +42,11 @@ public class TokenManageService {
 
    public OAuthAccessToken getDetailAccessToken(String authenticationId){
        OAuthAccessToken fullToken = oauthAccessTokenMapper.selectByPrimaryKey(authenticationId);
+
+       if(fullToken == null){
+           return null;
+       }
+
        OAuth2AccessToken token = (OAuth2AccessToken) SerializationUtils.deserialize(fullToken.getToken());
 
        OAuth2Authentication auth2Authentication = (OAuth2Authentication) SerializationUtils.deserialize((fullToken.getAuthentication()));

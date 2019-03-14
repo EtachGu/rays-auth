@@ -48,12 +48,17 @@ public class ClientController {
                              @RequestParam("clientId") String clientId){
         OAuthClientDetails client = oAuthClientDetailsMapper.selectByPrimaryKey(clientId);
 
-        List<String> grantTypes = Arrays.asList(client.getAuthorizedGrantTypes().split(","));
-        List<String> redirectUris = Arrays.asList(client.getWebServerRedirectUri().split(","));
+        boolean errorInfo = true;
+        if(client != null){
+            List<String> grantTypes = clientManageService.getGrantTypes(client);
+            List<String> redirectUris = clientManageService.getRedirectUris(client);
 
-        model.addAttribute("client", client);
-        model.addAttribute("grantTypes", grantTypes);
-        model.addAttribute("redirectUris", redirectUris);
+            model.addAttribute("client", client);
+            model.addAttribute("grantTypes", grantTypes);
+            model.addAttribute("redirectUris", redirectUris);
+            errorInfo = false;
+        }
+        model.addAttribute("errorInfo",errorInfo);
         return "edit-client";
     }
 
