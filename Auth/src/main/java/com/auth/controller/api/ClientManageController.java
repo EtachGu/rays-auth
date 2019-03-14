@@ -5,6 +5,7 @@ import com.auth.mapper.OAuthClientDetailsMapper;
 import com.auth.service.ClientManageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.ClientDetails;
+import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,9 +31,18 @@ public class ClientManageController {
     }
 
     @PostMapping("")
-    public void createClientDetails(@RequestBody OAuthClientDetails oAuthClientDetails){
-        oAuthClientDetailsMapper.insert(oAuthClientDetails);
-//        clientManageService.addClientDetails(oAuthClientDetails);
+    public void createClientDetails(@RequestBody BaseClientDetails baseClientDetails){
+//        oAuthClientDetailsMapper.insert(baseClientDetails);
+        clientManageService.addClientDetails(baseClientDetails);
     }
 
+    @GetMapping("/oauth")
+    public List<OAuthClientDetails> getOAuthClientDetails(){
+        return oAuthClientDetailsMapper.selectAll();
+    }
+
+    @GetMapping("/{clientId}")
+    public ClientDetails getOAuthClientDetails(@PathVariable String clientId){
+        return clientManageService.getClientDetailsById(clientId);
+    }
 }
