@@ -18,14 +18,8 @@
   </select>
   
   <select id="queryUserPermission" resultType="java.lang.String" parameterType="java.lang.String">
-    select permission.`name`
-    from permission
-    where id in (
-      select permission_id from roles_permissions where role_id in (
-          select role_id
-          from users_roles
-          where user_name = #{userName, jdbcType=VARCHAR}
-      )
-    )
+	select p.`name`
+	from users_roles as u,roles_permissions as rp, permission as p
+	where u.user_name = #{userName, jdbcType=VARCHAR} AND rp.permission_id = u.role_id AND p.id = rp.permission_id;
   </select>
 </mapper>
