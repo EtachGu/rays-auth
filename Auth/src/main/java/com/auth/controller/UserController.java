@@ -4,6 +4,7 @@ import com.auth.entity.OAuthUser;
 import com.auth.mapper.OAuthUserMapper;
 import com.auth.service.ClientManageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.oauth2.provider.ClientDetails;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
  * @version 1.0
  * @date 2019-3-12
  */
+@PreAuthorize("hasAnyAuthority('ADMIN','SUPER_ADMIN')")
 @Controller
 public class UserController {
 

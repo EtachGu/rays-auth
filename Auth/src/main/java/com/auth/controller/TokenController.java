@@ -3,6 +3,7 @@ package com.auth.controller;
 import com.auth.entity.OAuthAccessToken;
 import com.auth.service.TokenManageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import java.util.List;
  * @version 1.0
  * @date 2019-3-13
  */
+@PreAuthorize("hasAnyAuthority('ADMIN','SUPER_ADMIN')")
 @Controller
 public class TokenController {
 

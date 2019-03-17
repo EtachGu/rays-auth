@@ -5,6 +5,7 @@ import com.auth.mapper.OAuthClientDetailsMapper;
 import com.auth.service.ClientManageService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import java.util.List;
  * @version 1.0
  * @date 2019-3-12
  */
+@PreAuthorize("hasAnyAuthority('ADMIN','SUPER_ADMIN')")
 @Controller
 public class ClientController {
 
