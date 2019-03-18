@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -31,8 +32,23 @@ public class UserManageService implements UserDetailsService {
     @Autowired
     private OAuthUserMapper oAuthUserMapper;
 
+    private final LoginAttemptService loginAttemptService;
+    private final HttpServletRequest request;
+
+    @Autowired
+    public UserManageService(LoginAttemptService loginAttemptService, HttpServletRequest request) {
+        this.loginAttemptService = loginAttemptService;
+        this.request = request;
+    }
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        String ip = getClientIP();
+        if (loginAttemptService.isBlocked(ip)) {
+            throw new RuntimeException("blocked");
+        }
+
         OAuthUser user =
                 oAuthUserMapper.queryByUserName(username);
 
@@ -45,6 +61,14 @@ public class UserManageService implements UserDetailsService {
                 user.getPassword(),
                 authorities);
         return userDetails;
+    }
+
+    private String getClientIP() {
+        String xfHeader = request.getHeader("X-Forwarded-For");
+        if (xfHeader == null){
+            return request.getRemoteAddr();
+        }
+        return xfHeader.split(",")[0];
     }
 
 //    public Collection<? extends GrantedAuthority> getAuthorities(UserInfo userInfo) {

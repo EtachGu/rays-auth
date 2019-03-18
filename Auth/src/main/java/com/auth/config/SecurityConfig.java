@@ -3,6 +3,7 @@ package com.auth.config;
 import com.auth.service.UserManageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +16,7 @@ import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
+import org.springframework.web.context.request.RequestContextListener;
 
 import javax.sql.DataSource;
 
@@ -114,5 +116,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
         jdbcTokenRepository.setDataSource(dataSource);
         return jdbcTokenRepository;
+    }
+
+    @Bean
+    public ApplicationListener loginSuccessListener(){
+        return new AuthenticationSuccessEventListener();
+    }
+
+    @Bean
+    public ApplicationListener loginFailureListener(){
+        return new AuthenticationFailureEventListener();
+    }
+
+    @Bean
+    public RequestContextListener requestContextListener(){
+        return new RequestContextListener();
     }
 }

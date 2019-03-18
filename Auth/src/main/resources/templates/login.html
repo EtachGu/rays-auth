@@ -18,7 +18,8 @@
         <div class="container">
             <form class="form-signin" method="post" action="login">
                 <h2 class="form-signin-heading">Please Sign In</h2>
-                <div th:if="${loginError}" class="alert alert-danger">Wrong user or password</div>
+                <div th:if="${loginError}" class="alert alert-danger"
+                 th:text="${errorInfo != null ? errorInfo : 'Wrong user or password'}">-</div>
                 <p>
                     <label for="username" class="sr-only">Username</label>
                     <input
