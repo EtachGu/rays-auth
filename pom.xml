@@ -13,6 +13,7 @@
         <module>client1</module>
         <module>client2</module>
         <module>client3</module>
+        <module>resource</module>
     </modules>
 
     <dependencyManagement>
