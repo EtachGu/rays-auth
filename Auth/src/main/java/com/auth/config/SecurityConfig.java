@@ -46,10 +46,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new SessionRegistryImpl();
     }
 
-    @Bean
-    public ServletListenerRegistrationBean<HttpSessionEventPublisher> httpSessionEventPublisher() {
-        return new ServletListenerRegistrationBean<HttpSessionEventPublisher>(new HttpSessionEventPublisher());
-    }
+//    @Bean
+//    public ServletListenerRegistrationBean<HttpSessionEventPublisher> httpSessionEventPublisher() {
+//        return new ServletListenerRegistrationBean<HttpSessionEventPublisher>(new HttpSessionEventPublisher());
+//    }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -118,18 +118,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return jdbcTokenRepository;
     }
 
-    @Bean
-    public ApplicationListener loginSuccessListener(){
-        return new AuthenticationSuccessEventListener();
-    }
-
-    @Bean
-    public ApplicationListener loginFailureListener(){
-        return new AuthenticationFailureEventListener();
-    }
-
-    @Bean
-    public RequestContextListener requestContextListener(){
-        return new RequestContextListener();
-    }
 }
