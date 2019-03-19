@@ -3,6 +3,7 @@ package com.auth.controller;
 import com.auth.service.LoginAttemptService;
 import com.auth.service.UserManageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import java.util.List;
  * @version 1.0
  * @date 2019-3-11
  */
+@PreAuthorize("hasAnyAuthority('ADMIN','SUPER_ADMIN')")
 @Controller
 public class HomeController {
 
