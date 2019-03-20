@@ -59,7 +59,7 @@ Open with IDEA and run start `Auth`
 - 日志记录
 - 支持JWT
 - 管理员权限
-- 登录监控、统计
+- 登录监控、统计(时间、次数)
 
 
 ## Reference
