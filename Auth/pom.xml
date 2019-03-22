@@ -140,6 +140,10 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
             <version>${spring-boot-start-data-redis.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-logging -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
