@@ -2,9 +2,9 @@ package com.auth.service;
 
 import com.auth.entity.OAuthAccessToken;
 import com.auth.mapper.OAuthAccessTokenMapper;
-import org.apache.commons.lang.SerializationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.common.util.SerializationUtils;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Service;
 

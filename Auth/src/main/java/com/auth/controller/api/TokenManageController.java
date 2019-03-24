@@ -2,9 +2,10 @@ package com.auth.controller.api;
 
 import com.auth.entity.OAuthAccessToken;
 import com.auth.service.TokenManageService;
-import org.apache.commons.lang.SerializationUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.common.util.SerializationUtils;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
