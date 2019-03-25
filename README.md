@@ -54,12 +54,14 @@ Open with IDEA and run start `Auth`
 
 ## Todo list
 
-- Token缓存
+- Token缓存 
 - 登录人机验证
-- 日志记录
+- 日志记录 :heavy_check_mark:
 - 支持JWT
-- 管理员权限
-- 登录监控、统计(时间、次数)
+- 管理员权限  :heavy_check_mark:
+- 登录监控、IP统计(时间、次数) :heavy_check_mark:
+- XSS（Cross-site Script) 跨站脚本攻击
+- 注册用户名检测
 
 
 ## Reference
