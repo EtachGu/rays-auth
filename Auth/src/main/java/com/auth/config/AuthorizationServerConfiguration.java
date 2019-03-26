@@ -1,36 +1,27 @@
 package com.auth.config;
 
-import com.zaxxer.hikari.HikariDataSource;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.config.annotation.builders.ClientDetailsServiceBuilder;
-import org.springframework.security.oauth2.config.annotation.builders.JdbcClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
-import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.approval.ApprovalStore;
 import org.springframework.security.oauth2.provider.approval.JdbcApprovalStore;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.util.Assert;
 
 import javax.sql.DataSource;
-import java.util.Iterator;
 
 /**
  * @author: Gu danpeng
@@ -47,6 +38,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Autowired
 //    @Qualifier("mysql")
     private DataSource dataSource;
+
+//    @Autowired
+//    private RedisConnectionFactory connectionFactory;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -66,6 +60,12 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         return new JdbcTokenStore(this.dataSource);
     }
 
+//    @Bean
+//    public TokenStore tokenStore() {
+//        RedisTokenStore redis = new RedisTokenStore(connectionFactory);
+//        return redis;
+//    }
+
     @Bean
     public ApprovalStore approvalStore() {
         return new JdbcApprovalStore(this.dataSource);
@@ -77,6 +77,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
         defaultTokenServices.setTokenStore(tokenStore());
         defaultTokenServices.setReuseRefreshToken(true);
+        // set Access Token Expiration
+//        defaultTokenServices.setAccessTokenValiditySeconds(30);
         return defaultTokenServices;
     }
 
@@ -89,6 +91,11 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
             }
             return clientDetailsService;
     }
+
+//    @Bean
+//    public AccessTokenConverter defaultTokenConverter(){
+//
+//    }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -128,7 +135,10 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 //                .allowedTokenEndpointRequestMethods(HttpMethod.GET,HttpMethod.POST) // 允许通过Get和POST请求 获取Token
                 .tokenStore(tokenStore())//.userApprovalHandler(userApprovalHandler)
                 .approvalStore(approvalStore())
-                .authenticationManager(authenticationManager);
+                .authenticationManager(authenticationManager)
+        .pathMapping("/oauth/check_token","/oauth/check_token")
+                .tokenServices(defaultTokenServices());
+//                .accessTokenConverter(defaultTokenConverter());
     }
 
     @Override

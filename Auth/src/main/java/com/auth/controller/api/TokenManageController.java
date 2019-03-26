@@ -4,18 +4,16 @@ import com.auth.entity.OAuthAccessToken;
 import com.auth.service.TokenManageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.common.util.SerializationUtils;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
-import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
+import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,9 +33,10 @@ public class TokenManageController {
     private TokenStore tokenStore;
 
     @Resource(name = "defaultTokenServices")
-    private ConsumerTokenServices consumerTokenServices;
+    private DefaultTokenServices consumerTokenServices;
 
 
+    @Cacheable("access_tokens")
     @GetMapping("/access-tokens")
     public List<?> getOAuth2AccessToken(@RequestParam(value = "showDetails", required = false, defaultValue = "false") boolean showDetails){
 
