@@ -75,3 +75,5 @@ Open with IDEA and run start `Auth`
 [4] https://www.thymeleaf.org/doc/articles/springsecurity.html
 
 [5] https://www.concretepage.com/spring-boot/spring-boot-redis-cache
+
+[6] https://docs.spring.io/spring-data/data-redis/docs/current/reference/html
