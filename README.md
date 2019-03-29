@@ -62,6 +62,7 @@ Open with IDEA and run start `Auth`
 - 登录监控、IP统计(时间、次数) :heavy_check_mark:
 - XSS（Cross-site Script) 跨站脚本攻击防护
 - 注册用户名检测、用户输入校验
+- https
 
 
 ## Reference
