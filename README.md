@@ -7,11 +7,23 @@ An Authentication & Authorization Server which is based on Spring Security OAuth
 
 ## Quick Start
 
-Requirement
+Requirements
+- JDK 8
+- Maven
+- MySQL
+- Redis
 
 before you start this project, you should create a schema which is named `evan_sso`, then you can create tables by executing `evan_sso.sql`
 
 Open with IDEA and run start `Auth`
+
+`https://localhost:8080/authserver`
+
+Login Page
+![Login Page](img/login.png)
+
+Home
+![token manager](img/token.png)
 
 ## 总体架构图(Architecture)
 
@@ -62,7 +74,7 @@ Open with IDEA and run start `Auth`
 - 登录监控、IP统计(时间、次数) :heavy_check_mark:
 - XSS（Cross-site Script) 跨站脚本攻击防护
 - 注册用户名检测、用户输入校验
-- https
+- https :heavy_check_mark:
 
 
 ## Reference
@@ -78,3 +90,5 @@ Open with IDEA and run start `Auth`
 [5] https://www.concretepage.com/spring-boot/spring-boot-redis-cache
 
 [6] https://docs.spring.io/spring-data/data-redis/docs/current/reference/html
+
+[7] https://www.callicoder.com/configuring-spring-boot-application/
