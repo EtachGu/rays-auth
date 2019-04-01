@@ -11,7 +11,7 @@ server:
     context-path: /client2
   port: 8082
 
-auth-server: http://127.0.0.1:8080/authserver
+auth-server: https://127.0.0.1:8443/authserver
 
 security:
   oauth2:
