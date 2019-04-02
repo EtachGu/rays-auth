@@ -74,7 +74,8 @@ Home
 - 登录监控、IP统计(时间、次数) :heavy_check_mark:
 - XSS（Cross-site Script) 跨站脚本攻击防护
 - 注册用户名检测、用户输入校验
-- https :heavy_check_mark:
+- https :heavy_check_mark:  
+- http/2 :heavy_check_mark: (JDK 9+, or JDK 8 + tomcat native)
 
 
 ## Reference
@@ -92,3 +93,5 @@ Home
 [6] https://docs.spring.io/spring-data/data-redis/docs/current/reference/html
 
 [7] https://www.callicoder.com/configuring-spring-boot-application/
+
+[8] https://docs.spring.io/spring-boot/docs/current/reference/html/howto-embedded-web-servers.html#howto-configure-http2-tomcat
