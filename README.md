@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/EtachGu/rays-auth.svg?branch=master)](https://travis-ci.org/EtachGu/rays-auth)
+
 # OAuth Server 
 
 An Authentication & Authorization Server which is based on Spring Security OAuth2.
