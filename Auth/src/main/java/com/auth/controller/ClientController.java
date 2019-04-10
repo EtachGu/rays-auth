@@ -3,17 +3,28 @@ package com.auth.controller;
 import com.auth.entity.OAuthClientDetails;
 import com.auth.mapper.OAuthClientDetailsMapper;
 import com.auth.service.ClientManageService;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetails;
+import org.springframework.security.oauth2.provider.error.DefaultWebResponseExceptionTranslator;
+import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolationException;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,9 +35,12 @@ import java.util.List;
  * @version 1.0
  * @date 2019-3-12
  */
+@Validated
 @PreAuthorize("hasAnyAuthority('ADMIN','SUPER_ADMIN')")
 @Controller
 public class ClientController {
+
+    private final Logger logger = LoggerFactory.getLogger(ClientController.class);
 
     @Autowired
     private ClientManageService clientManageService;
@@ -111,7 +125,7 @@ public class ClientController {
     }
 
     @PostMapping("/new-client")
-    public String newClient(@RequestParam("clientId") String clientId,
+    public String newClient(@NotBlank @RequestParam("clientId") String clientId,
                             @RequestParam("clientSecret") String clientSecret,
                             @RequestParam(value = "authorizationCode",required = false) String authorizationCode,
                             @RequestParam(value = "password",required = false) String password,
@@ -151,6 +165,17 @@ public class ClientController {
             clientManageService.addClientDetails(OAuthClientDetails.ClientDetailsBuilder(client));
         }
         return "redirect:clients";
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public String handleException(Exception e, HttpServletRequest request) throws Exception {
+        logger.info("Handling error: " + e.getClass().getSimpleName() + ", " + e.getMessage());
+        // This isn't an oauth resource, so we don't want to send an
+        // unauthorized code here. The client has already authenticated
+        // successfully with basic auth and should just
+        // get back the invalid token error.
+
+        return "redirect:" + request.getServletPath();
     }
 
 }

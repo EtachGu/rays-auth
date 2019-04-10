@@ -2,7 +2,6 @@ package com.auth.service;
 
 import com.auth.entity.OAuthUser;
 import com.auth.mapper.OAuthUserMapper;
-import org.apache.commons.lang.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
