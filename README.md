@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/EtachGu/rays-auth.svg?branch=master)](https://travis-ci.org/EtachGu/rays-auth)
+[![GitHub stars](https://img.shields.io/github/stars/EtachGu/rays-auth.svg "GitHub stars")](https://github.com/EtachGu/rays-auth)
 
 # OAuth Server 
 
