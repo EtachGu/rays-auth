@@ -79,6 +79,7 @@ Home
 - 注册用户名检测、用户输入校验
 - https :heavy_check_mark:  
 - http/2 :heavy_check_mark: (JDK 9+, or JDK 8 + tomcat native)
+- 提供单页面登录功能
 
 
 ## Reference
