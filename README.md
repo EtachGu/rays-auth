@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/EtachGu/rays-auth.svg?branch=master)](https://travis-ci.org/EtachGu/rays-auth)
+[![GitHub stars](https://img.shields.io/github/stars/EtachGu/rays-auth.svg "GitHub stars")](https://github.com/EtachGu/rays-auth)
 
 # OAuth Server 
 
@@ -78,6 +79,7 @@ Home
 - 注册用户名检测、用户输入校验
 - https :heavy_check_mark:  
 - http/2 :heavy_check_mark: (JDK 9+, or JDK 8 + tomcat native)
+- 提供单页面登录功能
 
 
 ## Reference
@@ -97,3 +99,5 @@ Home
 [7] https://www.callicoder.com/configuring-spring-boot-application/
 
 [8] https://docs.spring.io/spring-boot/docs/current/reference/html/howto-embedded-web-servers.html#howto-configure-http2-tomcat
+
+[9] https://spring.io/guides/gs/spring-boot-docker/
