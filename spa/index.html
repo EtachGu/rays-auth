@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test SPA login</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <button id="login" onclick="onLogin()">Sign In</button>
+    <script>
+        var currentHost = "http://localhost:3000";
+        function onLogin() {
+            var href = "https://localhost:8443/authserver/oauth/authorize?scope=all&response_type=code&client_id=spa_client&redirect_uri=" + encodeURIComponent(currentHost);
+            var state = "SACEX32s";   // random
+            var authUrl = href + "&state=" + state;
+            window.location.href = authUrl;
+        }
+
+        function checkAuthCode(){
+            var code = getQueryString("code");
+            var state = getQueryString("state");
+            if(code == null)
+                return false;
+            if(state == null)
+                return false;
+
+            if(state == "SACEX32s") {
+                var url = 'https://localhost:8443/authserver/oauth/token?grant_type=authorization_code&code=' + code + '&redirect_uri='
+                    + encodeURIComponent(currentHost) + "&state=" + state;
+                console.log(url);
+                debugger
+                axios.post(url,
+                    {},
+                    {    headers: {'Authorization': "Basic " + window.btoa("spa_client:123456")}}
+                ).then(function (response) {
+                    console.log(response);
+                    if(response.data && response.data.access_token) {
+                        var newEle = document.createElement("p");
+                        newEle.innerText = "you sign in successful access_token: " + response.data.access_token;
+                        document.getElementsByTagName("body")[0].insertAdjacentElement("beforeEnd",newEle);
+                        var loginElement = document.getElementById("login");
+                        loginElement.parentNode.removeChild(loginElement);
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+
+        }
+
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);//search,查询？后面的参数，并匹配正则
+            if(r!=null)
+                return  decodeURIComponent(r[2]);
+            return null;
+        }
+
+        checkAuthCode();
+
+    </script>
+</body>
+</html>

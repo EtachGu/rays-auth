@@ -47,7 +47,7 @@ public class AuthCorsConfiguration {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
 //        corsConfiguration.addAllowedOrigin("*");
-//        corsConfiguration.addAllowedHeader("*");
+        corsConfiguration.addAllowedHeader("*");
         corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS"));
 //        corsConfiguration.addExposedHeader("head1");
         //corsConfiguration.addExposedHeader("Location");
