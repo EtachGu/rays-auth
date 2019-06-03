@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Please sign in</title>
+        <title th:text="#{login.formtitle}">Please sign in</title>
         <link href="/webjars/bootstrap/css/bootstrap.min.css"
               th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
               rel="stylesheet" media="screen" />
@@ -17,38 +17,41 @@
     <body>
         <div class="container">
             <form class="form-signin" method="post" action="login">
-                <h2 class="form-signin-heading">Please Sign In</h2>
+                <h2 class="form-signin-heading" th:text="#{login.formtitle}">Please Sign In</h2>
                 <div th:if="${loginError}" class="alert alert-danger"
-                 th:text="${errorInfo != null ? errorInfo : 'Wrong user or password'}">-</div>
+                 th:text="((${errorInfo} != null) ? ${errorInfo} : #{login.warn.info})">-</div>
                 <p>
-                    <label for="username" class="sr-only">Username</label>
+                    <label for="username" class="sr-only" th:text="#{login.username}">Username</label>
                     <input
                         type="text"
                         id="username"
                         name="username"
                         class="form-control"
-                        placeholder="Username"
                         required=""
                         autofocus=""
+                        th:placeholder="#{login.username}"
                     />
                 </p>
                 <p>
-                    <label for="password" class="sr-only">Password</label>
+                    <label for="password" class="sr-only" th:text="#{login.password}">Password</label>
                     <input
                         type="password"
                         id="password"
                         name="password"
                         class="form-control"
-                        placeholder="Password"
                         required=""
+                        th:placeholder="#{login.password}"
                     />
                 </p>
                 <p>
                     <input type="checkbox" id="remember-me" name="remember-me"/>
-                    <label for="remember-me">Remember Me</label>
+                    <label for="remember-me" th:text="#{login.rememberme}">Remember Me</label>
                 </p>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                <p>Do not have an account yet ? <a class="signup-btn" href="register">Register</a></p>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.signin}">Sign in</button>
+                <p>
+                    <span th:text="#{login.register.info}">Do not have an account yet ? </span><a class="signup-btn" href="register" th:text="#{login.register}">Register</a>
+                </p>
+
             </form>
 
         </div>
