@@ -55,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/webjars/**", "/images/**", "/oauth/uncache_approvals", "/oauth/cache_approvals");
-        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/oauth/token");
+        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/oauth/token","/oauth/check_token");
     }
 
     @Override
