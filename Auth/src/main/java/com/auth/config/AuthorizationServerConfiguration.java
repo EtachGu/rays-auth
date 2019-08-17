@@ -17,6 +17,7 @@ import org.springframework.security.oauth2.provider.approval.ApprovalStore;
 import org.springframework.security.oauth2.provider.approval.JdbcApprovalStore;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.util.Assert;
@@ -54,6 +55,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private TokenEnhancer tokenEnhancer;
 
     @Bean
     public TokenStore tokenStore() {
@@ -137,7 +141,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .approvalStore(approvalStore())
                 .authenticationManager(authenticationManager)
         .pathMapping("/oauth/check_token","/oauth/check_token")
-                .tokenServices(defaultTokenServices());
+                .tokenServices(defaultTokenServices())
+                .tokenEnhancer(tokenEnhancer);
 //                .accessTokenConverter(defaultTokenConverter());
     }
 
