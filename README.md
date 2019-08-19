@@ -72,7 +72,7 @@ Home
 - Token缓存 :heavy_check_mark:
 - 登录人机验证
 - 日志记录 :heavy_check_mark:
-- 支持JWT
+- 支持JWT :heavy_check_mark:
 - 管理员权限  :heavy_check_mark:
 - 登录监控、IP统计(时间、次数) :heavy_check_mark:
 - XSS（Cross-site Script) 跨站脚本攻击防护
@@ -81,6 +81,7 @@ Home
 - http/2 :heavy_check_mark: (JDK 9+, or JDK 8 + tomcat native)
 - 提供单页面登录功能
 - 提供用户图片avatar
+- 支持client根据jwt解析用户信息
 
 
 ## Reference
