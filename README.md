@@ -1,6 +1,8 @@
 [![Build Status](https://travis-ci.org/EtachGu/rays-auth.svg?branch=master)](https://travis-ci.org/EtachGu/rays-auth)
 [![GitHub stars](https://img.shields.io/github/stars/EtachGu/rays-auth.svg "GitHub stars")](https://github.com/EtachGu/rays-auth)
 
+> this project is archived, stopping update.  项目已经停止维护了
+
 # OAuth Server 
 
 An Authentication & Authorization Server which is based on Spring Security OAuth2.
